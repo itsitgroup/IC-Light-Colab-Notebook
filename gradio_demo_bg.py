@@ -462,4 +462,6 @@ with block:
     bg_gallery.select(bg_gallery_selected, inputs=bg_gallery, outputs=input_bg)
 
 
-block.launch(server_name='0.0.0.0')
+block.launch(share=True)
+# block.launch(server_name='0.0.0.0')
+
