@@ -15,6 +15,9 @@ from briarmbg import BriaRMBG
 from enum import Enum
 from torch.hub import download_url_to_file
 
+import os
+import cv2
+
 
 # 'stablediffusionapi/realistic-vision-v51'
 # 'runwayml/stable-diffusion-v1-5'
@@ -333,6 +336,11 @@ def process_relight(input_fg, input_bg, prompt, image_width, image_height, num_s
 
 @torch.inference_mode()
 def process_normal(input_fg, input_bg, prompt, image_width, image_height, num_samples, seed, steps, a_prompt, n_prompt, cfg, highres_scale, highres_denoise, bg_source):
+    
+    # Set the directory where you want to save the output images
+    save_dir = "output_images"  # Change to your desired directory
+    os.makedirs(save_dir, exist_ok=True)  # Create the directory if it doesn't exist
+    
     input_fg, matting = run_rmbg(input_fg, sigma=16)
 
     print('left ...')
@@ -377,6 +385,12 @@ def process_normal(input_fg, input_bg, prompt, image_width, image_height, num_sa
 
     results = [normal, left, right, bottom, top] + inner_results
     results = [(x * 127.5 + 127.5).clip(0, 255).astype(np.uint8) for x in results]
+    
+    # Save each result image to the output directory
+    for idx, img in enumerate(results):
+        img_path = os.path.join(save_dir, f"output_image_{idx}.png")
+        cv2.imwrite(img_path, cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
+        
     return results
 
 
