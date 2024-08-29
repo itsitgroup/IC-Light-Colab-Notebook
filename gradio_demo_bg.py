@@ -19,7 +19,8 @@ import os
 import cv2
 
 # Set the directory where you want to save the output images
-save_dir = "output_images"  # Change to your desired directory
+save_dir = "./output_images"  # Change to your desired directory
+os.makedirs(save_dir, exist_ok=True)  # Create the directory if it doesn't exist
 
 # 'stablediffusionapi/realistic-vision-v51'
 # 'runwayml/stable-diffusion-v1-5'
@@ -350,7 +351,7 @@ def process_relight(input_fg, input_bg, prompt, image_width, image_height, num_s
 
 @torch.inference_mode()
 def process_normal(input_fg, input_bg, prompt, image_width, image_height, num_samples, seed, steps, a_prompt, n_prompt, cfg, highres_scale, highres_denoise, bg_source):
-    os.makedirs(save_dir, exist_ok=True)  # Create the directory if it doesn't exist
+
     
     input_fg, matting = run_rmbg(input_fg, sigma=16)
 
