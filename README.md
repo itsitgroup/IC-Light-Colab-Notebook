@@ -1,3 +1,22 @@
+
+# My Additions to This Repository
+
+## Gradio Public Link and Output Management
+
+I've made some enhancements to this repository to improve the user experience with Gradio and output management:
+
+- **Gradio Public Link**: The Gradio interface is now set to a public link, making it easier to access and share.
+- **Automatic Output Folder Creation**: Running the script will now automatically create an `outputs` folder where generated outputs are saved.
+- **Error Handling and Output Preservation**: 
+  - If an error occurs on Gradio during generation, your output will still be saved in the `outputs` folder, within the repo's directory.
+  - To prevent overwriting, please make sure to save your generated output from the folder before generating a new picture. I plan to implement a more robust solution to handle this issue soon.
+
+Feel free to experiment and save your outputs as needed. I'll continue to refine these features!
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/itsitgroup/IC-Light-Colab-Notebook/blob/main/ic_light_public_inference.ipynb)
+
+---
+
 # IC-Light
 
 IC-Light is a project to manipulate the illumination of images.
